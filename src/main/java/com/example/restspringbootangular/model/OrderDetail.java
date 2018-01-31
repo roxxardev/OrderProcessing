@@ -10,15 +10,21 @@ import java.math.BigDecimal;
 @Table(name = "order_details")
 public class OrderDetail {
 
-    @Id
-    private Long id;
 
+    @EmbeddedId
+    @AttributeOverrides({
+            @AttributeOverride(name = "orderId", column = @Column(name = "order_id")),
+            @AttributeOverride(name = "productId", column = @Column(name = "product_id"))
+    })
+    private OrderDetailPK orderDetailPK;
+
+    @MapsId("orderId")
     @ManyToOne
-    @JoinColumn(name = "order_id")
     private Order order;
 
-    @ManyToOne
     @JoinColumn(name = "product_id")
+    @MapsId("productId")
+    @ManyToOne
     private Product product;
 
     private BigDecimal unitPrice;

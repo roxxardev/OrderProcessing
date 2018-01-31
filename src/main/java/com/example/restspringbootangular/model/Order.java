@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,9 +31,9 @@ public class Order {
     @JoinColumn(name = "shipper_id")
     private Shipper shipper;
 
-    private Date orderDate;
-    private Date requiredDate;
-    private Date shippedDate;
+    private LocalDateTime orderDate;
+    private LocalDateTime requiredDate;
+    private LocalDateTime shippedDate;
     private Long shipVia;
     private BigDecimal freight;
     private String shipName;

@@ -3,7 +3,7 @@ package com.example.restspringbootangular.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,8 +18,8 @@ public class Employee {
     private String firstName;
     private String title;
     private String titleOfCourtesy;
-    private Date birthDate;
-    private Date hireDate;
+    private LocalDateTime birthDate;
+    private LocalDateTime hireDate;
     private String address;
     private String city;
     private String region;
@@ -30,6 +30,7 @@ public class Employee {
 
     @Lob
     private byte[] photo;
+    @Lob
     private String notes;
     private Integer reportsTo;
     private String photoPath;

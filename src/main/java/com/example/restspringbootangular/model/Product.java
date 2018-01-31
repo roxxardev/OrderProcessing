@@ -32,5 +32,5 @@ public class Product {
     private Boolean discontinued;
 
     @OneToMany(mappedBy = "product")
-    private Set<OrderDetail> orderDetail = new HashSet<>();
+    private Set<OrderDetail> orderDetails = new HashSet<>();
 }

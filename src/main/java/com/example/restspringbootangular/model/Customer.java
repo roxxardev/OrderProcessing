@@ -18,7 +18,7 @@ import java.util.Set;
 public class Customer {
 
     @Id
-    private Long id;
+    private String id;
     private String companyName;
     private String contactName;
     private String contactTitle;
