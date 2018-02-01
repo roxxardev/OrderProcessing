@@ -5,8 +5,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
 @Data
+@Entity
 @Table(name = "order_details")
 public class OrderDetail {
 
