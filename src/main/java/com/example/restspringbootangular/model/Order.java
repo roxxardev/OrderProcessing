@@ -1,6 +1,7 @@
 package com.example.restspringbootangular.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,12 +16,19 @@ import java.util.Set;
 public class Order {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+
+    @Transient
+    @JsonProperty(value = "customerId")
+    public String getCustomerId() {
+        return customer == null ? null : customer.getId();
+    }
 
     @JsonIgnore
     @ManyToOne

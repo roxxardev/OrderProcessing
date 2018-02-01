@@ -1,5 +1,6 @@
 package com.example.restspringbootangular.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Set;
 public class Employee {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String lastName;
     private String firstName;
@@ -35,6 +37,7 @@ public class Employee {
     private Integer reportsTo;
     private String photoPath;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employee")
     private Set<Order> orders = new HashSet<>();
 }

@@ -1,13 +1,11 @@
 package com.example.restspringbootangular.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,6 +28,7 @@ public class Customer {
     private String phone;
     private String fax;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders = new HashSet<>();
 }
