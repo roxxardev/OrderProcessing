@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class DefaultOrderService implements OrderService {
 
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
     public DefaultOrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;

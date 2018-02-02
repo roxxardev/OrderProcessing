@@ -21,7 +21,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(value = "/api", produces = APPLICATION_JSON_VALUE)
 public class CustomerController {
 
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
@@ -35,8 +35,10 @@ public class CustomerController {
 
     @ApiOperation(value = "Find customer by id")
     @RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
-    Optional<Customer> getCustomer(@PathVariable String id) {
-        return customerService.findById(id);
+    ResponseEntity<Customer> getCustomer(@PathVariable String id) {
+        return customerService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @ApiOperation(value = "Delete customer by id")
@@ -46,7 +48,6 @@ public class CustomerController {
             customerService.deleteById(id);
             return ResponseEntity.noContent().build();
         } catch (DataAccessException e) {
-            e.printStackTrace();
             return ResponseEntity.notFound().build();
         }
     }

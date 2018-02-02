@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class DefaultCustomerService implements CustomerService {
 
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     public DefaultCustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
