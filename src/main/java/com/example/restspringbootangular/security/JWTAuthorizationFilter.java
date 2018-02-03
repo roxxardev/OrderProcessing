@@ -1,7 +1,10 @@
 package com.example.restspringbootangular.security;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,7 +32,10 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         String header = request.getHeader(HEADER_STRING);
 
         if (header == null || !header.startsWith(TOKEN_PREFIX)) {
-            chain.doFilter(request, response);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setHeader("content-type", MediaType.APPLICATION_JSON_VALUE+";charset=UTF-8");
+            response.getWriter().write(convertObjectToJson("No '" + HEADER_STRING + "' header or does not start with '"+TOKEN_PREFIX+"'"));
+            //chain.doFilter(request, response);
             return;
         }
 
@@ -37,8 +43,11 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         try {
             authenticationToken = getAuthentication(request);
         } catch (ExpiredJwtException e) {
+
+            //response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "JWT expired");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("JWT expired");
+            response.setHeader("content-type", MediaType.APPLICATION_JSON_VALUE+";charset=UTF-8");
+            response.getWriter().write(convertObjectToJson("JWT expired"));
             return;
         }
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
@@ -50,7 +59,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         if(token == null) return null;
 
         String user = Jwts.parser()
-                .setSigningKey(SECRET)
+                .setSigningKey(SECRET.getBytes())
                 .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                 .getBody()
                 .getSubject();
@@ -59,4 +68,13 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
         return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
     }
+
+    private String convertObjectToJson(Object object) throws JsonProcessingException {
+        if (object == null) {
+            return null;
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(object);
+    }
+
 }
