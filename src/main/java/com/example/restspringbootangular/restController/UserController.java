@@ -2,8 +2,8 @@ package com.example.restspringbootangular.restController;
 
 import com.example.restspringbootangular.model.User;
 import com.example.restspringbootangular.service.user.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -50,5 +50,26 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
+    }
+
+    /**
+     * Dummy method for documentation puproses only, will never be reached
+     * @param login required login information
+     * @return dummy string
+     */
+    @ApiOperation(value = "Returns JWT token")
+    //@ApiResponses(value = { @ApiResponse(code = 200, message = "Will return a security token, which must be passed in every request", response = String.class) })
+    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    String getSessionToken(@RequestBody Login login) {
+        return "token";
+    }
+
+    @Data
+    private class Login {
+        @ApiModelProperty(example = "test", required = true)
+        private String username = "";
+
+        @ApiModelProperty(example = "test", required = true)
+        private String password = "";
     }
 }

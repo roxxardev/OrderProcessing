@@ -1,5 +1,6 @@
 package com.example.restspringbootangular.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Category {
     @Lob
     private byte[] picture;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private Set<Product> products = new HashSet<>();
 }

@@ -1,5 +1,6 @@
 package com.example.restspringbootangular.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,10 +18,12 @@ public class Product {
     private Long id;
     private String productName;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -32,6 +35,7 @@ public class Product {
     private Integer reorderLevel;
     private Boolean discontinued;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product")
     private Set<OrderDetail> orderDetails = new HashSet<>();
 }
