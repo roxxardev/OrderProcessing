@@ -4,6 +4,7 @@ import com.example.restspringbootangular.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -56,7 +57,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET.getBytes())
                 .compact();
-        response.getWriter().write(token);
+        response.setHeader("content-type", MediaType.APPLICATION_JSON_VALUE+";charset=UTF-8");
+        response.getWriter().write("{\"token\":\"" + token + "\"}");
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
     }
 }
