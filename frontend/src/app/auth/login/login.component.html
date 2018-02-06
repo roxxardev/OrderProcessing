@@ -1,15 +1,17 @@
-<div class="row justify-content-md-center">
-  <div class="col-md-4">
-    <form (ngSubmit)="onLogin(f)" #f="ngForm">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" ngModel class="form-control">
+<div class="container h-100" [@slideToBottom]>
+    <div class="row justify-content-md-center align-items-center h-100">
+      <div class="col-md-4">
+        <h1>Login</h1>
+        <form (ngSubmit)="onLogin(f)" #f="ngForm">
+          <div class="form-group">
+            <input type="text" class="form-control" name="username" ngModel placeholder="Username">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password" ngModel placeholder="Password">
+          </div>
+          <button class="btn btn-dark btn-lg" type="submit" [disabled]="!canLogin"> Log in</button>
+          <div *ngIf="loginMessage" style="color: darkred; font-weight: bold">{{loginMessage}}</div>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" ngModel class="form-control">
-      </div>
-      <button class="btn btn-primary" type="submit">Login</button>
-    </form>
-  </div>
+    </div>
 </div>
