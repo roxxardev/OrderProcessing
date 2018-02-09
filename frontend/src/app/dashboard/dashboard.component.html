@@ -1,4 +1,11 @@
-<p>
-  dashboard works!
-</p>
-<router-outlet></router-outlet>
+<div class="col-md-12">
+  <ul class="nav nav-tabs nav-fill">
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" routerLink="/home/dashboard/orders">Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" routerLink="/home/dashboard/products">Products</a>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>

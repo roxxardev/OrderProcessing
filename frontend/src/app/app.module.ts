@@ -17,6 +17,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { CustomersComponent } from './customers/customers.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailsComponent } from './orders/order-details/order-details.component';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { OrderDetailsComponent } from './orders/order-details/order-details.comp
     OrderDetailsComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,

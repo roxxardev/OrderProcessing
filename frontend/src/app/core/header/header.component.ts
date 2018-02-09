@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthHelperService} from "../../auth/auth-helper.service";
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  public isCollapsed = true;
 
-  constructor() { }
+  constructor(private authHelperService: AuthHelperService) {
+  }
 
   ngOnInit() {
   }
 
+  isAuthenticated() {
+    return this.authHelperService.isLoggedIn();
+  }
+
+  onLogout() {
+    this.authHelperService.logout();
+  }
 }

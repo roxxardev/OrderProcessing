@@ -7,11 +7,13 @@ import {AuthService} from "../auth/auth.service";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthInterceptor} from "../auth/auth.interceptor";
 import {AuthHelperService} from "../auth/auth-helper.service";
+import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   imports: [
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbCollapseModule
   ],
   declarations: [
     HomeComponent,

@@ -21,13 +21,12 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(form: NgForm) {
-    console.log(form);
     this.canLogin = false;
     this.loginMessage = "";
     this.authService.loginUser(form.value.username, form.value.password)
       .subscribe(
         response => {
-          console.log(response);
+          //console.log(response);
           if (response == undefined || response == null || response.token == null) {
             this.loginMessage = "Empty response or token not found.";
             this.canLogin = true;
@@ -38,7 +37,7 @@ export class LoginComponent implements OnInit {
           }
         },
         error => {
-          console.log(error);
+          //console.log(error);
           this.canLogin = true;
           switch (error.status) {
             case 403:
