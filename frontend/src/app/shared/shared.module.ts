@@ -1,11 +1,13 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { ScrollTrackerDirective } from './scroll-tracker.directive';
 
 @NgModule({
   exports: [
-    CommonModule
+    CommonModule,
+    ScrollTrackerDirective
   ],
-  declarations: []
+  declarations: [ScrollTrackerDirective]
 })
 export class SharedModule {
 }

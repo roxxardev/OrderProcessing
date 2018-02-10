@@ -21,14 +21,15 @@ export class EmployeesComponent implements OnInit {
       });
 
     this.columns = [
-      {prop: "id", name: "ID", width: 50},
+      {prop: "id", name: "ID", width: 10},
       {prop: "firstName", name: "First name"},
       {prop: "lastName", name: "Last name"},
       {prop: "address", name: "Address"},
       {prop: "city", name: "City"},
       {prop: "country", name: "Country"},
       {prop: "homePhone", name: "Phone"},
-      {prop: "title", name: "Title"}
+      {prop: "title", name: "Title"},
+      {prop: "notes", name: "Notes", width: 400}
     ];
   }
 

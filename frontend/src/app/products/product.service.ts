@@ -3,14 +3,14 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
-export class EmployeeService {
+export class ProductService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getEmployees(page:number, size: number): Observable<any> {
+  getProducts(page:number, size: number): Observable<any> {
     let httpParams: HttpParams = new HttpParams();
     httpParams = httpParams.append('page', page.toString());
     httpParams = httpParams.append('size', size.toString());
-    return this.http.get('/api/employees', {params: httpParams});
+    return this.http.get('/api/products', {params: httpParams});
   }
 }
