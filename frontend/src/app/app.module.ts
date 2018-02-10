@@ -18,6 +18,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailsComponent } from './orders/order-details/order-details.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
   ],
   imports: [
     NgbModule.forRoot(),
+    NgxDatatableModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,

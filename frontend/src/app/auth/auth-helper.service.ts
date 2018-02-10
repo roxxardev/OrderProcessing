@@ -9,8 +9,8 @@ export class AuthHelperService {
     this.tokenKey = 'id_token'
   }
 
-  setSession(authResult) {
-    localStorage.setItem(this.tokenKey, authResult.idToken);
+  setSession(token) {
+    localStorage.setItem(this.tokenKey, token);
   }
 
   logout() {

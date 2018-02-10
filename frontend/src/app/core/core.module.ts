@@ -8,6 +8,7 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthInterceptor} from "../auth/auth.interceptor";
 import {AuthHelperService} from "../auth/auth-helper.service";
 import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
+import {EmployeeService} from "../employees/employee.service";
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
   providers: [
     AuthService,
     AuthHelperService,
+    EmployeeService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ]
 })
