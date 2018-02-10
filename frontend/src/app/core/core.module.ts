@@ -11,6 +11,7 @@ import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
 import {EmployeeService} from "../employees/employee.service";
 import {ProductService} from "../products/product.service";
 import {CustomerService} from "../customers/customer.service";
+import {OrderService} from "../orders/order.service";
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import {CustomerService} from "../customers/customer.service";
     AuthHelperService,
     EmployeeService,
     ProductService,
+    OrderService,
     CustomerService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ]

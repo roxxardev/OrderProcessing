@@ -17,11 +17,10 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts(0, 1000)
       .subscribe(value => {
         this.rows = value.content;
-        console.log(value.content);
       });
 
     this.columns = [
-      {prop: "id", name: "ID", width: 10},
+      {prop: "id", name: "Id", width: 10},
       {prop: "productName", name: "Product name", width: 300},
       {prop: "quantityPerUnit", name: "Quantity per unit", width: 200},
       {prop: "reorderLevel", name: "Reorder level"},
