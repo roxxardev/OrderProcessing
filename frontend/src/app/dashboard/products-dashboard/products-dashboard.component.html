@@ -1,3 +1,15 @@
-<p>
-  products-dashboard works!
-</p>
+<h4 class="text-center" style="margin-top: 20px">Quantity per product</h4>
+<div style="height: 60vh; margin-top: 40px">
+  <ngx-charts-bar-vertical
+    [barPadding]="1"
+    [scheme]="colorScheme"
+    [results]="data"
+    [roundDomains]="true"
+    [showGridLines]="true"
+    [xAxis]="false"
+    [yAxis]="true"
+    [legend]="false"
+    [roundEdges]="true"
+  >
+  </ngx-charts-bar-vertical>
+</div>

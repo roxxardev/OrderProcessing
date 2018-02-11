@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ProductService} from "../../products/product.service";
 
 @Component({
   selector: 'app-products-dashboard',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsDashboardComponent implements OnInit {
 
-  constructor() { }
+  public data = [];
+  public colorScheme = {domain: ['#1f1835', '#a10a28', '#23a122', '#c9b420']};
+
+  constructor(private productService: ProductService) {
+  }
 
   ngOnInit() {
+    this.productService.getProductsStatistics().subscribe(value => {
+      this.data = value;
+    })
   }
 
 }

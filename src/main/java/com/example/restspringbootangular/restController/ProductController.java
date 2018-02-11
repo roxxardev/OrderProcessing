@@ -1,6 +1,7 @@
 package com.example.restspringbootangular.restController;
 
 import com.example.restspringbootangular.model.Product;
+import com.example.restspringbootangular.repository.OrderDetailRepository;
 import com.example.restspringbootangular.service.product.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,6 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @Api(tags = "Products")
@@ -19,9 +24,11 @@ import java.net.URI;
 public class ProductController {
 
     private final ProductService productService;
+    private final OrderDetailRepository orderDetailRepository;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, OrderDetailRepository orderDetailRepository) {
         this.productService = productService;
+        this.orderDetailRepository = orderDetailRepository;
     }
 
     @ApiOperation(value = "Returns Page with products")
@@ -59,5 +66,20 @@ public class ProductController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
+    }
+
+    @ApiOperation(value = "Get products quantity statistics")
+    @RequestMapping(value = "/products/quantityStats", method = RequestMethod.GET)
+    List<Map<String, String>> getProductsQuantityStats() {
+        List<Map<String, Long>> productsOverallQuantity = orderDetailRepository.getProductsOverallQuantity();
+        List<Map<String, String>> returnedValue = new ArrayList<>();
+        for(Map<String, Long> map : productsOverallQuantity) {
+            HashMap<String, String> hashMap = new HashMap<>();
+            for(Map.Entry<String, Long> entry : map.entrySet()) {
+                hashMap.put(entry.getKey(), String.valueOf(entry.getValue()));
+                returnedValue.add(hashMap);
+            }
+        }
+        return returnedValue;
     }
 }

@@ -18,7 +18,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
-        path: '', redirectTo: "/home/dashboard", pathMatch: 'full'
+        path: '', redirectTo: "/home/dashboard/orders", pathMatch: 'full'
       },
       {
         path: 'dashboard',
