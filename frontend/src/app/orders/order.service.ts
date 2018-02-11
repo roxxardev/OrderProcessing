@@ -13,4 +13,8 @@ export class OrderService {
     httpParams = httpParams.append('size', size.toString());
     return this.http.get('/api/orders', {params: httpParams});
   }
+
+  getOrdersStats(): Observable<any> {
+    return this.http.get("/api/orders/countryStatistics");
+  }
 }

@@ -13,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,16 +68,7 @@ public class ProductController {
 
     @ApiOperation(value = "Get products quantity statistics")
     @RequestMapping(value = "/products/quantityStats", method = RequestMethod.GET)
-    List<Map<String, String>> getProductsQuantityStats() {
-        List<Map<String, Long>> productsOverallQuantity = orderDetailRepository.getProductsOverallQuantity();
-        List<Map<String, String>> returnedValue = new ArrayList<>();
-        for(Map<String, Long> map : productsOverallQuantity) {
-            HashMap<String, String> hashMap = new HashMap<>();
-            for(Map.Entry<String, Long> entry : map.entrySet()) {
-                hashMap.put(entry.getKey(), String.valueOf(entry.getValue()));
-                returnedValue.add(hashMap);
-            }
-        }
-        return returnedValue;
+    List<Map<String, Object>> getProductsQuantityStats() {
+        return orderDetailRepository.getProductsOverallQuantity();
     }
 }

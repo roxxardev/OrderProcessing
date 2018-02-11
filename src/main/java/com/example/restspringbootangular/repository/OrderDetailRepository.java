@@ -12,5 +12,5 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, OrderD
     List<OrderDetail> findAllByOrderDetailPK_OrderId(long orderId);
 
     @Query("select product.productName as name, sum(quantity) as value from OrderDetail group by product.productName")
-    List<Map<String, Long>> getProductsOverallQuantity();
+    List<Map<String, Object>> getProductsOverallQuantity();
 }
