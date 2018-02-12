@@ -1,4 +1,4 @@
-package com.example.restspringbootangular.restController;
+package com.example.restspringbootangular.controller.restController;
 
 import com.example.restspringbootangular.model.Product;
 import com.example.restspringbootangular.repository.OrderDetailRepository;

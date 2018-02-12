@@ -20,7 +20,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .securitySchemes(Lists.newArrayList(apiKey()))
                 .select()
-                    .apis(RequestHandlerSelectors.basePackage("com.example.restspringbootangular.restController"))
+                    .apis(RequestHandlerSelectors.basePackage("com.example.restspringbootangular.controller.restController"))
                     .build()
                 .useDefaultResponseMessages(false);
     }

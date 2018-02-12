@@ -1,4 +1,4 @@
-package com.example.restspringbootangular.restController;
+package com.example.restspringbootangular.controller.restController;
 
 import com.example.restspringbootangular.model.Customer;
 import com.example.restspringbootangular.service.customer.CustomerService;
